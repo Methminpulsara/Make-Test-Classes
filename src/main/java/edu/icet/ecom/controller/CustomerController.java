@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping()
+@RequestMapping("/customer")
 @Configuration
 @RequiredArgsConstructor
 
@@ -25,6 +27,23 @@ public class CustomerController {
     public void update(@RequestBody Customer customer){
         service.add(customer);
     }
+
+    @GetMapping("/search")
+    public Customer search(@PathVariable Integer id ){
+       return service.search(id);
+    }
+
+    @GetMapping("/getAll")
+    public List<Customer>getAll(){
+        return service.getAll();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Integer id){
+        service.delete(id);
+    }
+
+
 
 
 
